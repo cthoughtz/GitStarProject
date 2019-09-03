@@ -20,15 +20,12 @@ class MyStarsRepos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_stars_repos)
 
-
-
-
-
-
         myStarsList.apply {
             layoutManager = LinearLayoutManager(applicationContext)
             adapter = repoAdapter
         }
+
+        getStarredRepos()
     }
 
     fun getStarredRepos() {

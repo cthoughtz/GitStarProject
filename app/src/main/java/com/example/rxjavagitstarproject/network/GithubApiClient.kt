@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object GithubApiClient {
 
-    val BASE_URL = "https://api.gethub.com"
+    val BASE_URL = "https://api.github.com"
     val gitHubService: GitHubService
 
     init {
