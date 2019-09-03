@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavagitstarproject.R
 import com.example.rxjavagitstarproject.view.adapter.GibHubRepoAdapter
 import com.example.rxjavagitstarproject.model.Repo
+import com.example.rxjavagitstarproject.network.GithubApiClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_my_stars_repos.*
 
 class MyStarsRepos : AppCompatActivity() {
 
-    val myAdapter = GibHubRepoAdapter(arrayListOf())
+    val repoAdapter = GibHubRepoAdapter(arrayListOf())
     var repoList = ArrayList<Repo>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,91 +22,22 @@ class MyStarsRepos : AppCompatActivity() {
 
 
 
-        //mock data
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
-        repoList.add(
-            Repo(
-                "Rxjava",
-                "Rxjava is an amazing library for your life",
-                "Java"
-            )
-        )
 
 
-        myAdapter.addRepos(repoList)
 
         myStarsList.apply {
             layoutManager = LinearLayoutManager(applicationContext)
-            adapter = myAdapter
+            adapter = repoAdapter
         }
+    }
+
+    fun getStarredRepos() {
+        GithubApiClient.getGithubService().getStarredRepos("mrabelwahed")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it ->
+                repoAdapter.addRepos(it)
+            }
     }
 }
