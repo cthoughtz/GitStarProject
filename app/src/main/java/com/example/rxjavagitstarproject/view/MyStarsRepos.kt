@@ -2,6 +2,7 @@ package com.example.rxjavagitstarproject.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavagitstarproject.R
 import com.example.rxjavagitstarproject.view.adapter.GibHubRepoAdapter
@@ -20,9 +21,14 @@ class MyStarsRepos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_stars_repos)
 
+
+
+        val divider = DividerItemDecoration(myStarsList.context, DividerItemDecoration.VERTICAL)
+
         myStarsList.apply {
             layoutManager = LinearLayoutManager(applicationContext)
             adapter = repoAdapter
+            addItemDecoration(divider)
         }
 
         getStarredRepos()
