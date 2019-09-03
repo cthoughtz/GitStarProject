@@ -49,6 +49,7 @@ class GibHubRepoAdapter(var data: ArrayList<Repo>) : RecyclerView.Adapter<GibHub
             repoName.text = repo.name
             repoDesc.text = repo.description
             repoLang.text = repo.language
+            repoCount.text = repo.starCount.toString()
         }
     }
 }
