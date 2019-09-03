@@ -24,6 +24,17 @@ class GibHubRepoAdapter(var data: ArrayList<Repo>) : RecyclerView.Adapter<GibHub
 
     override fun onBindViewHolder(holder: StarRepoViewHolder, position: Int) {
         holder.bind(data[position])
+
+
+        if (data[position].description == null){
+            holder.repoDesc.text = "NO DESCRIPTION"
+         }
+
+//        data[position].description?.let {
+//            holder.repoDesc.text = data[position].language
+//        }?: run{
+//            holder.repoDesc.text = "NO DESCRIPTION"
+//        }
     }
 
     class StarRepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
