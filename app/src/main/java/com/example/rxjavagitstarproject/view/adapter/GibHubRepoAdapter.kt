@@ -1,4 +1,4 @@
-package com.example.rxjavagitstarproject.adapter
+package com.example.rxjavagitstarproject.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavagitstarproject.R
-import com.example.rxjavagitstarproject.adapter.GibHubRepoAdapter
+import com.example.rxjavagitstarproject.view.adapter.GibHubRepoAdapter
 import com.example.rxjavagitstarproject.model.Repo
 import kotlinx.android.synthetic.main.activity_my_stars_repos.*
 
@@ -105,7 +105,5 @@ class MyStarsRepos : AppCompatActivity() {
             layoutManager = LinearLayoutManager(applicationContext)
             adapter = myAdapter
         }
-
-
     }
 }
