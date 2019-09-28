@@ -3,20 +3,24 @@ package com.example.rxjavagitstarproject.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.rxjavagitstarproject.model.Repo
+import com.example.rxjavagitstarproject.db.Repo
 import com.example.rxjavagitstarproject.network.GithubApiClient
+import com.example.rxjavagitstarproject.respository.RepoLocalSource
+import com.example.rxjavagitstarproject.respository.RepoRemoteSource
+import com.example.rxjavagitstarproject.respository.RepoRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class RepoViewModel : ViewModel() {
 
-    val repoLiveData = MutableLiveData<ArrayList<Repo>>()
+    val repoLiveData = MutableLiveData<List<Repo>>()
     val compositeDisposable = CompositeDisposable()
+    val repository = RepoRepository(RepoRemoteSource, RepoLocalSource)
 
 
     fun getMyStarsRespo(username: String){
-        val repoDisposoable = GithubApiClient.getGithubService().getStarredRepos(username)
+        val repoDisposoable = repository.fetchRepos(username)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -27,7 +31,7 @@ class RepoViewModel : ViewModel() {
     }
 
 
-    fun getLiveData(): LiveData<ArrayList<Repo>> = repoLiveData
+    fun getLiveData(): LiveData<List<Repo>> = repoLiveData
 
     override fun onCleared() {
         super.onCleared()

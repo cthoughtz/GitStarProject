@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rxjavagitstarproject.R
-import com.example.rxjavagitstarproject.model.Repo
+import com.example.rxjavagitstarproject.db.Repo
 import kotlinx.android.synthetic.main.stars_item.view.*
 
 class GibHubRepoAdapter(var data: ArrayList<Repo>) : RecyclerView.Adapter<GibHubRepoAdapter.StarRepoViewHolder>() {
@@ -26,7 +26,7 @@ class GibHubRepoAdapter(var data: ArrayList<Repo>) : RecyclerView.Adapter<GibHub
         holder.bind(data[position])
 
 
-        if (data[position].description == null){
+        if (data[position].desc == null){
             holder.repoDesc.text = "NO DESCRIPTION"
          }
 
@@ -47,8 +47,8 @@ class GibHubRepoAdapter(var data: ArrayList<Repo>) : RecyclerView.Adapter<GibHub
         fun bind(repo: Repo) {
 
             repoName.text = repo.name
-            repoDesc.text = repo.description
-            repoLang.text = repo.language
+            repoDesc.text = repo.desc
+            repoLang.text = repo.lang
             repoCount.text = repo.starCount.toString()
         }
     }

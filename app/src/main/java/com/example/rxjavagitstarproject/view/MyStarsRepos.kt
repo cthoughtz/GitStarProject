@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rxjavagitstarproject.R
 import com.example.rxjavagitstarproject.view.adapter.GibHubRepoAdapter
-import com.example.rxjavagitstarproject.model.Repo
-import com.example.rxjavagitstarproject.network.GithubApiClient
+import com.example.rxjavagitstarproject.db.Repo
 import com.example.rxjavagitstarproject.viewmodel.RepoViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_my_stars_repos.*
 
 class MyStarsRepos : AppCompatActivity() {
