@@ -9,6 +9,7 @@ class RepoRepository(val repoRemoteSource: RepoRemoteSource, val repoLocalSource
             .doOnNext{ repos->
                 saveRepos(repos)
             }
+            .onErrorResumeNext(Observable.empty())
     }
 
     override fun saveRepos(repos: List<Repo>) {
